@@ -6,12 +6,20 @@
 
 #ifndef _Blitzdings_H_
 #define _Blitzdings_H_
-#include "Arduino.h"
-#include "FastLed.h"
+
 //add your includes for the project Blitzdings here
-
-
+#include "Arduino.h"
+#include "FastLED.h"
 //end of add your includes here
+#define NUM_LEDS 1
+#define DATA_PIN 3
+#define CLOCK_PIN 13
+
+
+CRGB leds[NUM_LEDS];
+int bpm = 0;
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
