@@ -7,6 +7,7 @@
 #ifndef _Blitzdings_H_
 #define _Blitzdings_H_
 #include "Arduino.h"
+#include "FastLed.h"
 //add your includes for the project Blitzdings here
 
 
