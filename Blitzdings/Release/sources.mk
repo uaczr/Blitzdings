@@ -31,5 +31,6 @@ SIZEDUMMY :=
 SUBDIRS := \
 libraries/fastled \
 libraries/core \
+Patterns \
 . \
 

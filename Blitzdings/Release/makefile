@@ -11,6 +11,7 @@ RM := rm -rf
 -include subdir.mk
 -include libraries/fastled/subdir.mk
 -include libraries/core/subdir.mk
+-include Patterns/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

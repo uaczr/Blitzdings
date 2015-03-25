@@ -11,7 +11,7 @@ libraries/fastled/colorpalettes.cpp.d: \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/Printable.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/USBAPI.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/Arduino.h \
- C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\variants/pins_arduino.h \
+ C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/../variants/pins_arduino.h \
  ../libraries/fastled/pixeltypes.h ../libraries/fastled/lib8tion.h \
  ../libraries/fastled/color.h ../libraries/fastled/fastpin.h \
  ../libraries/fastled/fastpin_avr.h \
@@ -57,7 +57,7 @@ C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/USBAPI.h:
 
 C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/Arduino.h:
 
-C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\variants/pins_arduino.h:
+C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/../variants/pins_arduino.h:
 
 ../libraries/fastled/pixeltypes.h:
 

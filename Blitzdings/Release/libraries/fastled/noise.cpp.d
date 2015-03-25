@@ -12,7 +12,7 @@ libraries/fastled/noise.cpp.d: ../libraries/fastled/noise.cpp \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/Printable.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/USBAPI.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/Arduino.h \
- C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\variants/pins_arduino.h \
+ C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/../variants/pins_arduino.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\fastled/pixeltypes.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\fastled/lib8tion.h \
  C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\fastled/color.h \
@@ -68,7 +68,7 @@ C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/USBAPI.h:
 
 C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/Arduino.h:
 
-C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\variants/pins_arduino.h:
+C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\core/../variants/pins_arduino.h:
 
 C:\Users\Christoph\git\Blitzdings\Blitzdings\libraries\fastled/pixeltypes.h:
 
