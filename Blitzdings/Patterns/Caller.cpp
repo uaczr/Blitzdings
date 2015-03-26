@@ -33,35 +33,35 @@ void callPatterns(){
  */
 	if((Pattern >> 0)%2)
 	{
-		//funktion 1
+		//call funktion 1
 	}
 	if((Pattern >> 1)%2)
 	{
-		//funktion 2
+		//call funktion 2
 	}
 	if((Pattern >> 2)%2)
 	{
-		//funktion 3
+		//call funktion 3
 	}
 	if((Pattern >> 3)%2)
 	{
-		//funktion 4
+		//call funktion 4
 	}
 	if((Pattern >> 4)%2)
 	{
-		//funktion 5
+		//call funktion 5
 	}
 	if((Pattern >> 5)%2)
 	{
-		//funktion 6
+		//call funktion 6
 	}
 	if((Pattern >> 6)%2)
 	{
-		//funktion 7
+		//call funktion 7
 	}
 	if((Pattern >> 7)%2)
 	{
-		//funktion 8
+		//call funktion 8
 	}
 }
 
