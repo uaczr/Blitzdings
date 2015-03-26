@@ -10,6 +10,8 @@
 //add your includes for the project Blitzdings here
 #include <Arduino.h>
 #include <FastLED.h>
+#include "Communication/Communication.h"
+#include "Patterns/Caller.h"
 //end of add your includes here
 
 //defines

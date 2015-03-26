@@ -34,3 +34,6 @@ void serialReader(){
 	}
 
 }
+void initSerialReader(){
+	Serial.begin(BAUDRATE);
+}

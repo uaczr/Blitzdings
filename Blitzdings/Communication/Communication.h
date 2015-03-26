@@ -10,6 +10,9 @@
 
 #include <Arduino.h>
 
+//Defines
+#define BAUDRATE 9600
+
 //import globale variabeln
 extern uint8_t bpm;
 extern uint8_t firstColor[3];
