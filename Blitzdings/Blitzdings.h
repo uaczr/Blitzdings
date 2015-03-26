@@ -18,11 +18,11 @@
 #define CLOCK_PIN 13
 
 //globale Variabeln
-
-/*extern uint8_t bpm = 0;
+CRGB leds[NUM_LEDS];
+extern uint8_t bpm = 0;
 extern uint8_t firstColor[3] = {0,0,0};
 extern uint8_t secondColor[3] = {0,0,0};
-extern uint16_t Pattern = 0;*/
+extern uint16_t Pattern = 0;
 
 
 

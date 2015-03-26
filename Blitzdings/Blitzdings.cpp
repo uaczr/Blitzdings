@@ -1,7 +1,7 @@
 #include "Blitzdings.h"
 
 // Define the array of leds
-CRGB leds[NUM_LEDS];
+
 
 void setup() {
        FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
