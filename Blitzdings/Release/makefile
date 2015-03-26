@@ -9,9 +9,10 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include libraries/fastled/subdir.mk
--include libraries/core/subdir.mk
 -include Patterns/subdir.mk
+-include Libraries/FastLED/subdir.mk
+-include Libraries/Core/subdir.mk
+-include Communication/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

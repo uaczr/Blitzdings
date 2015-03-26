@@ -29,8 +29,9 @@ SIZEDUMMY :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-libraries/fastled \
-libraries/core \
 Patterns \
+Libraries/FastLED \
+Libraries/Core \
+Communication \
 . \
 

@@ -8,9 +8,13 @@
 #ifndef COMMUNICATION_COMMUNICATION_H_
 #define COMMUNICATION_COMMUNICATION_H_
 
-#include "Arduino.h"
+#include <Arduino.h>
 
-extern int bpm;
+//import globale variabeln
+extern uint8_t bpm;
+extern uint8_t firstColor[3];
+extern uint8_t secondColor[3];
+extern uint16_t Pattern;
 
 
 /*************************************************************************
@@ -23,20 +27,24 @@ extern int bpm;
  *
  * 		bits:
  *
- * 		0 		-> Message Type
- * 		1-24 	-> First significant color
- * 		25-50 	-> Second significant color
+ * 		0-7 	-> Message Type
+ * 		8-31 	-> First significant color
+ * 		32-55 	-> Second significant color
  *
  * 	Event-Message:
  *
  * 		bits:
  *
- * 		0		-> Message Type
- * 		1-8		-> bpm
- * 		9-25	-> Patterns
+ * 		0-7		-> Message Type
+ * 		8-15	-> bpm estimate
+ * 		16-31	-> Patterns
  *
  ***************************************************************************/
 
+//funktionen
+
+extern void initSerialReader();
+extern void serialReader();
 
 
 
