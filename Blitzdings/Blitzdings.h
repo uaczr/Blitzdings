@@ -3,19 +3,35 @@
 // - include files
 // - extern variable definitions
 // In the appropriate section
+#define NUMLEDS 10
+#define DATAPIN 53
+#define CLOCKPIN 13
 
 #ifndef _Blitzdings_H_
 #define _Blitzdings_H_
-#include "Arduino.h"
+
+
+
 //add your includes for the project Blitzdings here
-
-
+#include <Arduino.h>
+#include <FastLED.h>
+#include "Communication/Communication.h"
+#include "Patterns/Caller.h"
+#include "Patterns/Blink.h"
 //end of add your includes here
+
+//defines
+
+
+
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 void loop();
 void setup();
+
 #ifdef __cplusplus
 } // extern "C"
 #endif
