@@ -9,15 +9,14 @@
 #define COMMUNICATION_COMMUNICATION_H_
 
 #include <Arduino.h>
+#include <FastLED.h>
+
 
 //Defines
 #define BAUDRATE 9600
 
 //import globale variabeln
-extern uint8_t bpm;
-extern uint8_t firstColor[3];
-extern uint8_t secondColor[3];
-extern uint16_t Pattern;
+
 
 
 /*************************************************************************

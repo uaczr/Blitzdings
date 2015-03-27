@@ -40,7 +40,9 @@ Blitzdings.cpp.d: ../Blitzdings.cpp ../Blitzdings.h \
  C:/Users/Christoph/git/Libraries/FastLED/./dmx.h \
  C:/Users/Christoph/git/Libraries/FastLED/smartmatrix_t3.h \
  C:/Users/Christoph/git/Libraries/FastLED/noise.h \
- C:/Users/Christoph/git/Libraries/FastLED/power_mgt.h
+ C:/Users/Christoph/git/Libraries/FastLED/power_mgt.h \
+ ../Communication/Communication.h ../Patterns/Caller.h \
+ ../Patterns/Blink.h ../Patterns/Shot.h ../Patterns/Blink.h
 
 ../Blitzdings.h:
 
@@ -127,3 +129,13 @@ C:/Users/Christoph/git/Libraries/FastLED/smartmatrix_t3.h:
 C:/Users/Christoph/git/Libraries/FastLED/noise.h:
 
 C:/Users/Christoph/git/Libraries/FastLED/power_mgt.h:
+
+../Communication/Communication.h:
+
+../Patterns/Caller.h:
+
+../Patterns/Blink.h:
+
+../Patterns/Shot.h:
+
+../Patterns/Blink.h:
