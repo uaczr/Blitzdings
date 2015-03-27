@@ -9,6 +9,7 @@
 #define PATTERNS_CALLER_H_
 #include <Arduino.h>
 #include <FastLED.h>
+#include "Blink.h"
 //Externe Varialblen
 
 

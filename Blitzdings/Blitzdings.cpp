@@ -7,7 +7,8 @@ uint8_t firstColor[3] = {0,0,0};
 uint8_t secondColor[3] = {0,0,0};
 uint16_t Pattern = 0;
 uint8_t Events = 0;
-
+unsigned long deltaT = 0;
+unsigned long altT = 0;
 
 // Define the array of leds
 
@@ -15,14 +16,15 @@ uint8_t Events = 0;
 void setup() {
 	initSerialReader();
     FastLED.addLeds<WS2811, DATAPIN, RGB>(leds, NUM_LEDS);
-    pinMode(13, OUTPUT);
+    altT = millis();
 }
 
 void loop() {
 	Events = 0;
+	deltaT = millis() - altT;
+	altT = millis();
+
 	serialReader();
-	digitalWrite(13,HIGH);
-	delay(20);
-	digitalWrite(13, LOW);
-	delay(500);
+	callPatterns();
+	FastLED.show();
 }

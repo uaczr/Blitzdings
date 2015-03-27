@@ -44,6 +44,7 @@ void callPatterns(){
 	if((Pattern >> 0)%2)
 	{
 		//call funktion 1
+		blinkAll();
 	}
 	if((Pattern >> 1)%2)
 	{
