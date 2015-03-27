@@ -10,10 +10,10 @@
 
 //globale Variablen
 extern uint16_t NUM_LEDS;
-extern CRGB *leds;
+extern CRGB *pleds;
 extern uint8_t bpm;
-extern uint8_t *firstColor;
-extern uint8_t *secondColor;
+extern uint8_t *pfirstColor;
+extern uint8_t *psecondColor;
 extern uint16_t Pattern;
 extern uint8_t Events;
 
@@ -44,11 +44,13 @@ void callPatterns(){
 	if((Pattern >> 0)%2)
 	{
 		//call funktion 1
+
 		blinkAll();
 	}
 	if((Pattern >> 1)%2)
 	{
 		//call funktion 2
+		shot();
 	}
 	if((Pattern >> 2)%2)
 	{

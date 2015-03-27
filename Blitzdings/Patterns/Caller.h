@@ -10,6 +10,7 @@
 #include <Arduino.h>
 #include <FastLED.h>
 #include "Blink.h"
+#include "Shot.h"
 //Externe Varialblen
 
 

@@ -10,39 +10,64 @@
 
 //globale Variablen
 extern uint16_t NUM_LEDS;
-extern CRGB *leds;
+extern CRGB *pleds;
 extern uint8_t bpm;
-extern uint8_t *firstColor;
-extern uint8_t *secondColor;
+extern uint8_t *pfirstColor;
+extern uint8_t *psecondColor;
 extern uint16_t Pattern;
 extern uint8_t Events;
 extern unsigned long deltaT;
+
+
 void blinkAll(){
-	if(Events == 1)
+	static float r = 0;
+	static float g = 0;
+	static float b = 0;
+
+	if(Events%2)
 	{
 		for(int i = 0; i<NUM_LEDS; i++){
-			leds[i] = CRGB(firstColor[0],firstColor[1],firstColor[2]);
+			pleds[i] = CRGB(pfirstColor[0],pfirstColor[1],pfirstColor[2]);
 		}
+		r=0;
+		g=0;
+		b=0;
+		digitalWrite(13,LOW);
 	}
 	else
 	{
 		int8_t help = 0;
+
+		r += 1/(float)1500*deltaT*((float)bpm);
+		g += 1/(float)1500*deltaT*((float)bpm);
+		b += 1/(float)1500*deltaT*((float)bpm);
 		for(int i = 0; i<NUM_LEDS; i++){
-			help = leds[i].r - deltaT;
-			if(help > 0)
+
+			if(r > 1 && pleds[i].r > r)
 			{
-				leds[i].r -= deltaT;
+				pleds[i].r -= r;
+
 			}
-			help = leds[i].g - deltaT;
-			if(help > 0)
+
+			if(g > 1 && pleds[i].g > g)
 			{
-				leds[i].g -= deltaT;
+				pleds[i].g -= g;
+
 			}
-			help = leds[i].b - deltaT;
-			if(help > 0)
+
+			if(b > 1 && pleds[i].b > b)
 			{
-				leds[i].b -= deltaT;
+				pleds[i].b -= b;
+
 			}
+
 		}
+		if(r>1)
+			r=0;
+		if(g>1)
+			g=0;
+		if(b>1)
+			b=0;
+
 	}
 }

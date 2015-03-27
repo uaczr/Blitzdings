@@ -42,7 +42,7 @@ Blitzdings.cpp.d: ../Blitzdings.cpp ../Blitzdings.h \
  C:/Users/Christoph/git/Libraries/FastLED/noise.h \
  C:/Users/Christoph/git/Libraries/FastLED/power_mgt.h \
  ../Communication/Communication.h ../Patterns/Caller.h \
- ../Patterns/Blink.h
+ ../Patterns/Blink.h ../Patterns/Shot.h ../Patterns/Blink.h
 
 ../Blitzdings.h:
 
@@ -133,5 +133,9 @@ C:/Users/Christoph/git/Libraries/FastLED/power_mgt.h:
 ../Communication/Communication.h:
 
 ../Patterns/Caller.h:
+
+../Patterns/Blink.h:
+
+../Patterns/Shot.h:
 
 ../Patterns/Blink.h:
