@@ -8,8 +8,9 @@
 #ifndef PATTERNS_CALLER_H_
 #define PATTERNS_CALLER_H_
 #include <Arduino.h>
+#include <FastLED.h>
 //Externe Varialblen
-extern uint16_t Pattern;
+
 
 //Funktionen
 extern void callPatterns();

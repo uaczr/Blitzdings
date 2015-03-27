@@ -7,6 +7,16 @@
 
 #include "Caller.h"
 
+
+//globale Variablen
+extern uint16_t NUM_LEDS;
+extern CRGB *leds;
+extern uint8_t bpm;
+extern uint8_t *firstColor;
+extern uint8_t *secondColor;
+extern uint16_t Pattern;
+extern uint8_t Events;
+
 void callPatterns(){
 /*
  * Calls Patterns depending on the Patternsbitcode

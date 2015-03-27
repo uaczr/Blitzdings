@@ -5,11 +5,14 @@
  *      Author: Christoph
  */
 #include <Arduino.h>
-#include "FastLED.h"
+#include <FastLED.h>
 
 #ifndef PATTERNS_BLINK_H_
 #define PATTERNS_BLINK_H_
+//globale variabeln
 
-extern void Blink();
+//funktionen
+
+extern void blinkAll();
 
 #endif /* PATTERNS_BLINK_H_ */
