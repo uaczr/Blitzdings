@@ -26,7 +26,7 @@ void shot(){
 		run = 0;
 
 
-	float time = 1/(float)bpm*(float)60*1000/NUM_LEDS*0.8f;
+	float time = 1/(float)bpm*(float)60*1000/NUM_LEDS*0.3f;
 
 	incrementer += (float)deltaT;
 	if(incrementer >= time)
