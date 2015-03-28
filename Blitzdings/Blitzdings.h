@@ -3,7 +3,7 @@
 // - include files
 // - extern variable definitions
 // In the appropriate section
-#define NUMLEDS 10
+#define NUMLEDS 22
 #define DATAPIN 53
 #define CLOCKPIN 13
 

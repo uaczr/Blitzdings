@@ -4,7 +4,7 @@
  *  Created on: 25.03.2015
  *      Author: Christoph
  */
-
+#define BAUDRATE 9600
 #include "Communication.h"
 
 
@@ -46,42 +46,38 @@ void serialReader(){
 
 
 
-	if(Serial.available()>0)
+	if(Serial.available() > 0)
 	{
-		delay(20);
+
+		while(Serial.available() < 7)
+		{
+			delay(1);
+		}
+
+
 		uint8_t mType = 0;
 		mType = Serial.read();
-		//digitalWrite(13, HIGH);
 		if(mType == 0)
 		{
-			/*for(int i = 0; i<6;i++){
-				if(Serial.read() > 0)
-				{
-					digitalWrite(13, HIGH);
-				}
-				delay(100);
-				digitalWrite(13,LOW);
-				delay(100);
-
-			}*/
-
 			pfirstColor[0] = Serial.read();
 			pfirstColor[1] = Serial.read();
 			pfirstColor[2] = Serial.read();
 			psecondColor[0] = Serial.read();
 			psecondColor[1] = Serial.read();
 			psecondColor[2] = Serial.read();
+			while(Serial.available())
+				Serial.read();
 
 		}
-		else
+		else if(mType == 1)
 		{
-			//digitalWrite(13, HIGH);
 			bpm = Serial.read();
 			Events = Serial.read();
 			Pattern = Serial.read();
 			Pattern = Pattern << 8;
 			Pattern = Pattern | Serial.read();
-
+			while(Serial.available())
+				Serial.read();
 		}
 
 	}

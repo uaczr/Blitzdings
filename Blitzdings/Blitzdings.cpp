@@ -10,8 +10,8 @@ extern uint8_t Events = 0;
 extern unsigned long deltaT = 0;
 extern unsigned long altT = 0;
 CRGB leds[NUMLEDS];
-uint8_t firstColor[3] = {0,255,0};
-uint8_t secondColor[3] = {100,0,0};
+uint8_t firstColor[3] = {0,30,7};
+uint8_t secondColor[3] = {150,0,0};
 // Define the array of leds
 
 
