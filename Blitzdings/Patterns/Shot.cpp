@@ -23,10 +23,16 @@ void shot(){
 	static CRGB old = pleds[0];
 
 	if((Events >> 1)%2)
-		run = 0;
+	{
+		if(run = 0)
+			pleds[position] = old;
+		position = 0;
+		old = pleds[position];
+		pleds[position] = CRGB(psecondColor[0],psecondColor[1], psecondColor[2]);
+		run=0;
+	}
 
-
-	float time = 1/(float)bpm*(float)60*1000/NUM_LEDS*0.3f;
+	float time = 1/(float)bpm*(float)60*1000/NUM_LEDS*1.0f;
 
 	incrementer += (float)deltaT;
 	if(incrementer >= time)
@@ -36,6 +42,7 @@ void shot(){
 		{
 			position++;
 			pleds[position-1] = old;
+			old = pleds[position];
 			pleds[position] = CRGB(psecondColor[0],psecondColor[1], psecondColor[2]);
 		}
 		else if(run == 0 && position == NUM_LEDS-1)

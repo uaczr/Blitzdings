@@ -38,9 +38,9 @@ void blinkAll(){
 	{
 		int8_t help = 0;
 
-		r += 1/(float)1500*deltaT*((float)bpm);
-		g += 1/(float)1500*deltaT*((float)bpm);
-		b += 1/(float)1500*deltaT*((float)bpm);
+		r += 1/(float)60000*deltaT*((float)bpm)*pfirstColor[0];
+		g += 1/(float)60000*deltaT*((float)bpm)*pfirstColor[1];
+		b += 1/(float)60000*deltaT*((float)bpm)*pfirstColor[2];
 		for(int i = 0; i<NUM_LEDS; i++){
 
 			if(r > 1 && pleds[i].r > r)

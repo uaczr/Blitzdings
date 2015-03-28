@@ -13,7 +13,7 @@
 
 
 //Defines
-#define BAUDRATE 9600
+
 
 //import globale variabeln
 
