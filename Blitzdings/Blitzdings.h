@@ -3,9 +3,7 @@
 // - include files
 // - extern variable definitions
 // In the appropriate section
-#define NUMLEDS 22
-#define DATAPIN 53
-#define CLOCKPIN 13
+
 
 #ifndef _Blitzdings_H_
 #define _Blitzdings_H_

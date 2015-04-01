@@ -51,7 +51,7 @@ void serialReader(){
 
 		while(Serial.available() < 7)
 		{
-			delay(1);
+			delay(3);
 		}
 
 

@@ -1,4 +1,10 @@
+#define NUMLEDS 85
+#define DATAPIN 12
+
+#define CLOCKPIN 13
 #include "Blitzdings.h"
+
+
 //globale Variabeln
 extern uint16_t NUM_LEDS = NUMLEDS;
 extern CRGB *pleds = 0;
@@ -16,7 +22,7 @@ uint8_t secondColor[3] = {150,0,0};
 
 
 void setup() {
-	for(uint8_t i = 0; i<NUMLEDS; i++)
+	for(uint8_t i = 0; i<NUM_LEDS; i++)
 		leds[i] = CRGB(0,0,0);
 	Pattern = 0;
 	initSerialReader();

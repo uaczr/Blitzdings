@@ -17,7 +17,7 @@ extern uint8_t Events;
 extern unsigned long deltaT;
 
 void shot(){
-	static uint8_t position = 0;
+	/*static uint8_t position = 0;
 	static float incrementer = 0;
 	static uint8_t run = 0;
 	static CRGB old = pleds[0];
@@ -52,8 +52,9 @@ void shot(){
 			run = 1;
 		}
 
-	}
-
+	}*/
+	for(int i = 0; i < NUM_LEDS; i++)
+		      pleds[i] = CRGB::Red;
 
 
 

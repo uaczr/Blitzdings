@@ -27,37 +27,42 @@ void blinkAll(){
 	if(Events%2)
 	{
 		for(int i = 0; i<NUM_LEDS; i++){
-			pleds[i] = CRGB(pfirstColor[0],pfirstColor[1],pfirstColor[2]);
+			//pleds[i] = CRGB(pfirstColor[0],pfirstColor[1],pfirstColor[2]);
+			pleds[i] = CRGB::Red;
 		}
 		r=0;
 		g=0;
 		b=0;
-		digitalWrite(13,LOW);
+
 	}
 	else
 	{
 		int8_t help = 0;
-
-		r += 1/(float)60000*deltaT*((float)bpm)*pfirstColor[0];
-		g += 1/(float)60000*deltaT*((float)bpm)*pfirstColor[1];
-		b += 1/(float)60000*deltaT*((float)bpm)*pfirstColor[2];
+		/*
+		r += 1/(float)6000*deltaT*((float)bpm)*pfirstColor[0];
+		g += 1/(float)6000*deltaT*((float)bpm)*pfirstColor[1];
+		b += 1/(float)6000*deltaT*((float)bpm)*pfirstColor[2];
+		*/
+		r += 5;
+		g += 2;
+		b += 2;
 		for(int i = 0; i<NUM_LEDS; i++){
 
-			if(r > 1 && pleds[i].r > r)
+			if(r > 1 && pleds[i].r >= r)
 			{
-				pleds[i].r -= r;
+				pleds[i].r -= 10;
 
 			}
 
-			if(g > 1 && pleds[i].g > g)
+			if(g > 1 && pleds[i].g >= g)
 			{
-				pleds[i].g -= g;
+				pleds[i].g -= 10;
 
 			}
 
-			if(b > 1 && pleds[i].b > b)
+			if(b > 1 && pleds[i].b >= b)
 			{
-				pleds[i].b -= b;
+				pleds[i].b -= 10;
 
 			}
 
