@@ -4,7 +4,8 @@
  *  Created on: 01.04.2015
  *      Author: Christoph
  */
-
+#include <Arduino.h>
+#include <FastLED.h>
 #ifndef PATTERNS_PATTERN_H_
 #define PATTERNS_PATTERN_H_
 
@@ -12,11 +13,12 @@ class Pattern {
 protected:
 
 public:
+	Pattern();
 	Pattern(CRGB *colors, CRGB *leds, uint16_t length);
 	virtual ~Pattern();
 	virtual void  eventDetected( uint8_t * parameters) = 0;
 	virtual void  eventFade(long *deltaT, uint8_t * parameters) = 0;
-
+	void init(CRGB *colors, CRGB *leds, uint16_t length);
 	CRGB *ptrColors;
 	CRGB *ptrleds;
 	uint16_t numLeds;

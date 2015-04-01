@@ -11,6 +11,9 @@ Wabern::Wabern(CRGB *colors, CRGB *leds, uint16_t length) {
 	// TODO Auto-generated constructor stub
 
 }
+Wabern::Wabern(){
+
+}
 
 Wabern::~Wabern() {
 	// TODO Auto-generated destructor stub

@@ -12,9 +12,15 @@
 
 class Wabern: public Pattern {
 protected:
+	uint8_t bpm = 0;
+	uint8_t mood = 0;
+	uint8_t param3 = 0;
+	uint8_t param4 = 0;
+	uint8_t param5 = 0;
 
 public:
 	Wabern(CRGB *colors, CRGB *leds, uint16_t length);
+	Wabern();
 	virtual ~Wabern();
 	void  eventDetected( uint8_t * parameters);
 	void  eventFade(long *deltaT, uint8_t * parameters);

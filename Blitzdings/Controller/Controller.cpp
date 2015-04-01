@@ -8,7 +8,7 @@
 
 #include <FastLED.h>
 #include <Arduino.h>
-#include "Patterns/Wabern.h"
+#include "../Patterns/Wabern.h"
 #include "Controller.h"
 
 Controller::Controller() {
@@ -33,14 +33,17 @@ Controller::Controller() {
 	}
 	colorChange = 0;
 
-//intitialisiere RGB-Matrix
 
-	for(i = 0; i< NUM_LEDS;i++)
-		CRGB leds[i] = CRGB(0,0,0);
 
 //inititialisere Leds
 	FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
 	FastLED.show();
+
+//intitialisiere RGB-Matrix
+	for(i = 0; i< NUM_LEDS;i++)
+		leds[i] = CRGB(0,0,0);
+
+
 
 
 //intialisiere Seriellen Port
@@ -51,7 +54,7 @@ Controller::Controller() {
 	timeDelta = 0;
 
 //initialisere Patterns
-	pattern1 = new Wabern(colors, leds, NUM_LEDS);
+	pattern1.init(colors, leds, NUM_LEDS);
 
 
 	//TODO EEPROM Überprüfung für gespeicherte Werte
@@ -106,41 +109,95 @@ void Controller::listenSerial(){
 			parameter[3] = buf[i+1];
 			break;
 		case 7:
-			parameter[4] = buf[i+1];
+			parameter[5] = buf[i+1];
 			break;
 		case 8:
+			parameter[6] = buf[i+1];
+			break;
+		case 9:
+			parameter[7] = buf[i+1];
+			break;
+		case 10:
+			parameter[8] = buf[i+1];
+			break;
+		case 11:
+			parameter[9] = buf[i+1];
+			break;
+		case 12:
+			parameter[10] = buf[i+1];
+			break;
+		case 13:
+			parameter[11] = buf[i+1];
+			break;
+		case 14:
+			parameter[12] = buf[i+1];
+			break;
+		case 15:
+			parameter[13] = buf[i+1];
+			break;
+		case 16:
+			parameter[14] = buf[i+1];
+			break;
+		case 17:
+			parameter[15] = buf[i+1];
+			break;
+		case 18:
+			parameter[16] = buf[i+1];
+			break;
+		case 19:
+			parameter[17] = buf[i+1];
+			break;
+		case 20:
+			parameter[18] = buf[i+1];
+			break;
+		case 21:
+			parameter[19] = buf[i+1];
+			break;
+		case 22:
+			parameter[20] = buf[i+1];
+			break;
+		case 23:
+			parameter[21] = buf[i+1];
+			break;
+		case 24:
+			parameter[22] = buf[i+1];
+			break;
+		case 25:
+			parameter[23] = buf[i+1];
+			break;
+		case 26:
 			colors[0].r = buf[i+1];
 			colorChange ++;
 			break;
-		case 9:
+		case 27:
 			colorBuf[0].g = buf[i+1];
 			colorChange ++;
 			break;
-		case 10:
+		case 28:
 			colorBuf[0].b = buf[i+1];
 			colorChange ++;
 			break;
-		case 11:
+		case 29:
 			colorBuf[1].r = buf[i+1];
 			colorChange ++;
 			break;
-		case 12:
+		case 30:
 			colorBuf[1].g = buf[i+1];
 			colorChange ++;
 			break;
-		case 13:
+		case 31:
 			colorBuf[1].b = buf[i+1];
 			colorChange ++;
 			break;
-		case 14:
+		case 32:
 			colorBuf[2].r = buf[i+1];
 			colorChange ++;
 			break;
-		case 15:
+		case 33:
 			colorBuf[2].g = buf[i+1];
 			colorChange ++;
 			break;
-		case 16:
+		case 34:
 			colorBuf[2].b = buf[i+1];
 			colorChange ++;
 			break;

@@ -29,8 +29,8 @@ private:
 
 	uint8_t events; 			//1
 	uint8_t patterns;			//2
-	uint8_t parameter[5];		//3 bpm - 4 mood - 5 .. - 6 .. - 7 ..
-	CRGB colorBuf[3];			//8-16 Zwischenspeicher für gesendete Farben
+	uint8_t parameter[26];		//3 bpm - 4 mood - 5 .. - 6 .. - 25 ..
+	CRGB colorBuf[3];			//26-34 Zwischenspeicher für gesendete Farben
 	uint8_t colorChange;		//Colorchange > 3 = Farbwechesel
 
 //Felder:
