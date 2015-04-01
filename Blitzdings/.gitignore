@@ -2,4 +2,5 @@
 /.settings/
 /.cproject
 /.project
+/spec.d
 /.settings/org.eclipse.cdt.core.prefs
