@@ -36,6 +36,13 @@ private:
 //Felder:
 	CRGB colors[3];				//Farben für Patterns
 	CRGB leds[NUM_LEDS];		//RGB-Matrix
+	uint16_t numLeds = numLeds;
+
+	long timeOld;
+	long timeDelta;
+
+//Pattern:
+	Wabern pattern1;
 
 public:
 	Controller();

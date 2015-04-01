@@ -8,17 +8,18 @@
 
 #include <FastLED.h>
 #include <Arduino.h>
+#include "Patterns/Wabern.h"
 #include "Controller.h"
 
 Controller::Controller() {
 
-	//Initialisiere buffer
+//Initialisiere buffer
 	for(i = 0; i< 64;i++)
 		buf[i] = 0;
 	i = 0;
 	available = 0;
 
-	// Definition der Startwerte
+//Definition der Startwerte
 	events = 0;
 	patterns = 0;			//2
 
@@ -31,18 +32,26 @@ Controller::Controller() {
 		colors[i] = CRGB(0,0,0);
 	}
 	colorChange = 0;
-	//intitialisiere RGB-Matrix
+
+//intitialisiere RGB-Matrix
 
 	for(i = 0; i< NUM_LEDS;i++)
 		CRGB leds[i] = CRGB(0,0,0);
 
-	//inititialisere Leds
+//inititialisere Leds
 	FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
 	FastLED.show();
 
 
-	//intialisiere Seriellen Port
+//intialisiere Seriellen Port
 	Serial.begin(BAUDRATE);
+
+//initialisiere Zeitmessung
+	timeOld = millis();
+	timeDelta = 0;
+
+//initialisere Patterns
+	pattern1 = new Wabern(colors, leds, NUM_LEDS);
 
 
 	//TODO EEPROM Überprüfung für gespeicherte Werte
@@ -150,6 +159,56 @@ void Controller::listenSerial(){
 
 
 void Controller::callPatterns(){
-	//Ruft die aktuellen Patterns auf
 
+//Ruft die aktuellen Patterns auf
+	timeDelta = millis()-timeOld;
+
+//First check if pattern active then check if event or fade
+	if(patterns%2){
+		if(events%2){
+			pattern1.eventDetected(parameter);
+		}
+		else
+		{
+			pattern1.eventFade(&timeDelta, parameter);
+		}
+	}
+	if((patterns >> 1)%2){
+		if((events >> 1)%2){
+			//pattern2
+		}
+		else
+		{
+			//pattern2
+		}
+	}
+	if((patterns >> 2)%2){
+		if((events >> 2)%2){
+			//pattern3
+		}
+		else
+		{
+			//pattern3
+		}
+	}
+	if((patterns >> 3)%2){
+		if((events >> 3)%2){
+			//pattern4
+		}
+		else
+		{
+			//pattern4
+		}
+	}
+	if((patterns >> 4)%2){
+		if((events >> 4)%2){
+			//pattern5
+		}
+		else
+		{
+			//pattern5
+		}
+	}
+//Reset events to zero
+	events = 0;
 }
