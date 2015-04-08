@@ -6,29 +6,27 @@
  */
 
 
-#include <FastLED.h>
-#include <Arduino.h>
-#include "../Patterns/Wabern.h"
+
 #include "Controller.h"
 
 Controller::Controller() {
 
-//Initialisiere buffer
+//Initialisiere recbuffer
 	for(i = 0; i< 64;i++)
-		buf[i] = 0;
+		recbuf[i] = 0;
 	i = 0;
 	available = 0;
 
 //Definition der Startwerte
-	events = 0;
-	patterns = 0;			//2
+	EVENTS = 0;
+	PATTERNS = 0;			//2
 
-	for(i = 0; i < 5; i++)
+	for(i = 0; i < 232; i++)
 		parameter[i] = 0;
 
-	for(i = 0; i < 3; i++)
+	for(i = 0; i < 8; i++)
 	{
-		colorBuf[i] = CRGB(0,0,0);
+		colorsbuf[i] = CRGB(0,0,0);
 		colors[i] = CRGB(0,0,0);
 	}
 	colorChange = 0;
@@ -53,8 +51,8 @@ Controller::Controller() {
 	timeOld = millis();
 	timeDelta = 0;
 
-//initialisere Patterns
-	pattern1.init(colors, leds, NUM_LEDS);
+//initialisere PATTERNS
+	pattern1.init(colors, leds, numLeds, parameter);
 
 
 	//TODO EEPROM Überprüfung für gespeicherte Werte
@@ -69,19 +67,36 @@ Controller::~Controller() {
 void Controller::listenSerial(){
 	//Hört den Serialport auf die vordefinierten Signale ab
 
-	//Lese den seriellen Buffer aus
-	while(Serial.available()>0)
+	//Sendet Bereitschaftssignal
+	Serial.write(1);
+
+	//Warte auf Antwort des PCs -- Wartezeit ca. 0.5ms -- 500µs
+	//TODO Calibrieren bzw testen mit Max/Msp und Python etc
+	for(i = 0; i < 400; i++){
+		NOP;
+	}
+	//Lese den seriellen recbuffer aus wenn Daten angekommen sind
+	timeoutControll = 0;
+	available = 0;
+	while(Serial.available()>0 && timeoutControll == 0)
 	{
+		//Wenn ein Tupel aus Parameternr und Parameter vorhanden auslesen
 		if(Serial.available() > 1)
 		{
-			buf[available] = Serial.read();
-			buf[available+1] = Serial.read();
+			recbuf[available] = Serial.read();
+			recbuf[available+1] = Serial.read();
 			available += 2;
 		}
+		//Wenn kein Tuple warten für 125µs -- entspricht bei 115200 byte/s ca 13 Zeichen
 		else
 		{
 			for(i = 0; i < 100; i++){
 				NOP;
+			}
+			//Timeout wenn keine neuen Tuple angekommen sind
+			if(Serial.available()<2)
+			{
+				timeoutControll=1;
 			}
 		}
 	}
@@ -89,116 +104,125 @@ void Controller::listenSerial(){
 	//Übertrage die gelesenen Daten in die lokalen Variabeln
 	for(i = 0; i < available; i += 2)
 	{
-		switch(buf[i]){
+		switch(recbuf[i]){
 		case 1:
-			events = buf[i + 1];
+			EVENTS = recbuf[i + 1];
 			break;
 		case 2:
-			patterns = buf[i + 1];
+			PATTERNS = recbuf[i + 1];
 			break;
 		case 3:
-			parameter[0] = buf[i+1];
+			BPM = recbuf[i+1];
 			break;
 		case 4:
-			parameter[1] = buf[i+1];
+			GPARAM3 = recbuf[i+1];
 			break;
 		case 5:
-			parameter[2] = buf[i+1];
+			P1_TYPE = recbuf[i+1];
 			break;
 		case 6:
-			parameter[3] = buf[i+1];
+			P1_TIME = recbuf[i+1];
 			break;
 		case 7:
-			parameter[5] = buf[i+1];
+			P1_COLOR = recbuf[i+1];
 			break;
 		case 8:
-			parameter[6] = buf[i+1];
+			P2_PARAM1 = recbuf[i+1];
 			break;
 		case 9:
-			parameter[7] = buf[i+1];
+			P2_PARAM2 = recbuf[i+1];
 			break;
 		case 10:
-			parameter[8] = buf[i+1];
+			P2_PARAM3 = recbuf[i+1];
 			break;
 		case 11:
-			parameter[9] = buf[i+1];
+			P3_PARAM1 = recbuf[i+1];
 			break;
 		case 12:
-			parameter[10] = buf[i+1];
+			P3_PARAM2 = recbuf[i+1];
 			break;
 		case 13:
-			parameter[11] = buf[i+1];
+			P3_PARAM3 = recbuf[i+1];
 			break;
 		case 14:
-			parameter[12] = buf[i+1];
+			P4_PARAM1 = recbuf[i+1];
 			break;
 		case 15:
-			parameter[13] = buf[i+1];
+			P4_PARAM2 = recbuf[i+1];
 			break;
 		case 16:
-			parameter[14] = buf[i+1];
+			P4_PARAM3 = recbuf[i+1];
 			break;
 		case 17:
-			parameter[15] = buf[i+1];
+			P5_PARAM1 = recbuf[i+1];
 			break;
 		case 18:
-			parameter[16] = buf[i+1];
+			P5_PARAM2 = recbuf[i+1];
 			break;
 		case 19:
-			parameter[17] = buf[i+1];
+			P5_PARAM3 = recbuf[i+1];
 			break;
 		case 20:
-			parameter[18] = buf[i+1];
+			P6_PARAM1 = recbuf[i+1];
 			break;
 		case 21:
-			parameter[19] = buf[i+1];
+			P6_PARAM2 = recbuf[i+1];
 			break;
 		case 22:
-			parameter[20] = buf[i+1];
+			P6_PARAM3 = recbuf[i+1];
 			break;
 		case 23:
-			parameter[21] = buf[i+1];
+			P7_PARAM1 = recbuf[i+1];
 			break;
 		case 24:
-			parameter[22] = buf[i+1];
+			P7_PARAM2 = recbuf[i+1];
 			break;
 		case 25:
-			parameter[23] = buf[i+1];
+			P7_PARAM3 = recbuf[i+1];
+			break;
+		case 25:
+			P7_PARAM1 = recbuf[i+1];
 			break;
 		case 26:
-			colors[0].r = buf[i+1];
-			colorChange ++;
+			P7_PARAM2 = recbuf[i+1];
 			break;
 		case 27:
-			colorBuf[0].g = buf[i+1];
-			colorChange ++;
+			P7_PARAM3 = recbuf[i+1];
 			break;
 		case 28:
-			colorBuf[0].b = buf[i+1];
+			colors[0].r = recbuf[i+1];
 			colorChange ++;
 			break;
 		case 29:
-			colorBuf[1].r = buf[i+1];
+			colorsbuf[0].g = recbuf[i+1];
 			colorChange ++;
 			break;
 		case 30:
-			colorBuf[1].g = buf[i+1];
+			colorsbuf[0].b = recbuf[i+1];
 			colorChange ++;
 			break;
 		case 31:
-			colorBuf[1].b = buf[i+1];
+			colorsbuf[1].r = recbuf[i+1];
 			colorChange ++;
 			break;
 		case 32:
-			colorBuf[2].r = buf[i+1];
+			colorsbuf[1].g = recbuf[i+1];
 			colorChange ++;
 			break;
 		case 33:
-			colorBuf[2].g = buf[i+1];
+			colorsbuf[1].b = recbuf[i+1];
 			colorChange ++;
 			break;
 		case 34:
-			colorBuf[2].b = buf[i+1];
+			colorsbuf[2].r = recbuf[i+1];
+			colorChange ++;
+			break;
+		case 35:
+			colorsbuf[2].g = recbuf[i+1];
+			colorChange ++;
+			break;
+		case 36:
+			colorsbuf[2].b = recbuf[i+1];
 			colorChange ++;
 			break;
 		}
@@ -208,7 +232,7 @@ void Controller::listenSerial(){
 	if(colorChange > 3)
 	{
 		for(i = 0; i < 3; i++){
-			colors[i] = colorBuf[i];
+			colors[i] = colorsbuf[i];
 		}
 		colorChange = 0;
 	}
@@ -217,21 +241,21 @@ void Controller::listenSerial(){
 
 void Controller::callPatterns(){
 
-//Ruft die aktuellen Patterns auf
+//Ruft die aktuellen PATTERNS auf
 	timeDelta = millis()-timeOld;
 
 //First check if pattern active then check if event or fade
-	if(patterns%2){
-		if(events%2){
-			pattern1.eventDetected(parameter);
+	if(PATTERNS%2){
+		if(EVENTS%2){
+			pattern1.eventDetected();
 		}
 		else
 		{
-			pattern1.eventFade(&timeDelta, parameter);
+			pattern1.eventFade(&timeDelta);
 		}
 	}
-	if((patterns >> 1)%2){
-		if((events >> 1)%2){
+	if((PATTERNS >> 1)%2){
+		if((EVENTS >> 1)%2){
 			//pattern2
 		}
 		else
@@ -239,8 +263,8 @@ void Controller::callPatterns(){
 			//pattern2
 		}
 	}
-	if((patterns >> 2)%2){
-		if((events >> 2)%2){
+	if((PATTERNS >> 2)%2){
+		if((EVENTS >> 2)%2){
 			//pattern3
 		}
 		else
@@ -248,8 +272,8 @@ void Controller::callPatterns(){
 			//pattern3
 		}
 	}
-	if((patterns >> 3)%2){
-		if((events >> 3)%2){
+	if((PATTERNS >> 3)%2){
+		if((EVENTS >> 3)%2){
 			//pattern4
 		}
 		else
@@ -257,8 +281,8 @@ void Controller::callPatterns(){
 			//pattern4
 		}
 	}
-	if((patterns >> 4)%2){
-		if((events >> 4)%2){
+	if((PATTERNS >> 4)%2){
+		if((EVENTS >> 4)%2){
 			//pattern5
 		}
 		else
@@ -266,6 +290,6 @@ void Controller::callPatterns(){
 			//pattern5
 		}
 	}
-//Reset events to zero
-	events = 0;
+//Reset EVENTS to zero
+	EVENTS = 0;
 }

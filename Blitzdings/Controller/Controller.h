@@ -9,13 +9,18 @@
 #ifndef CONTROLLER_CONTROL_H_
 #define CONTROLLER_CONTROL_H_
 
+#include <FastLED.h>
+#include <Arduino.h>
+#include "../defines.h"
+#include "../PATTERNS/Wabern.h"
+
 //Wichtige Defines
 #define NUM_LEDS 100
 #define DATA_PIN 12
 #define BAUDRATE 115200
 
 //Assembler Defines
-#define NOP2 __asm__ __volatile__ ("rjmp .+0");
+#define NOP2 __asm__ ("rjmp .+0");		//Interruptable?
 
 
 class Controller {
@@ -23,21 +28,19 @@ private:
 
 	uint16_t i;					//Generalzähler
 
-//Communicationsvariabeln:
-	uint8_t buf[64];			//Zwischenspeicher für Incoming Messages
-	uint8_t available;			//Anzahl der Zwischengespeicherten Bytes
-
-	uint8_t events; 			//1
-	uint8_t patterns;			//2
-	uint8_t parameter[26];		//3 bpm - 4 mood - 5 .. - 6 .. - 25 ..
-	CRGB colorBuf[3];			//26-34 Zwischenspeicher für gesendete Farben
-	uint8_t colorChange;		//Colorchange > 3 = Farbwechesel
-
 //Felder:
-	CRGB colors[3];				//Farben für Patterns
-	CRGB leds[NUM_LEDS];		//RGB-Matrix
-	uint16_t numLeds = numLeds;
+	CRGB leds[NUM_LEDS];
+	uint8_t parameter[232];
+	CRGB colors[8];
+	CRGB colorsbuf[8];
+	uint8_t recbuf[64];
 
+
+//Communicationsvariabeln:
+	uint8_t available;			//Anzahl der Zwischengespeicherten Bytes
+	uint8_t timeoutControll = 0;
+	uint8_t colorChange;		//Colorchange > 3 = Farbwechesel
+	uint16_t numLeds = NUM_LEDS;
 	long timeOld;
 	long timeDelta;
 
