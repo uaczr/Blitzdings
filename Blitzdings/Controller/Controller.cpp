@@ -178,16 +178,13 @@ void Controller::listenSerial(){
 			P7_PARAM2 = recbuf[i+1];
 			break;
 		case 25:
-			P7_PARAM3 = recbuf[i+1];
-			break;
-		case 25:
-			P7_PARAM1 = recbuf[i+1];
+			P8_PARAM1 = recbuf[i+1];
 			break;
 		case 26:
-			P7_PARAM2 = recbuf[i+1];
+			P8_PARAM2 = recbuf[i+1];
 			break;
 		case 27:
-			P7_PARAM3 = recbuf[i+1];
+			P8_PARAM3 = recbuf[i+1];
 			break;
 		case 28:
 			colors[0].r = recbuf[i+1];

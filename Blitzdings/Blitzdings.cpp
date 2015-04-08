@@ -9,6 +9,8 @@ void setup() {
 }
 
 void loop() {
+	interrupts();
 	controller.listenSerial();
+	noInterrupts();
 	controller.callPatterns();
 }
